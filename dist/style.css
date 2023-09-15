@@ -1,0 +1,40 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root{
+    --primary-color:red;
+    --secondary-color:blue;
+    --tertiary-color:#b2b2c497;
+
+    --large-padding: 40px;
+}
+
+body{
+    height: 100vh;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--tertiary-color);
+    padding: var(--large-padding);
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+#grid-container{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    background-color: aqua;
+}
+
+#sidebar{
+
+}
