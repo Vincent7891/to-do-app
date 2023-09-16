@@ -30,25 +30,35 @@
 
                 <div id = "projects-bar">
                     <h2>Project</h2>
-                    <div id = #project-1>Project 1</div>
-                    <button>Add a project</button>
+                    <div id = project-1>Project 1</div>
+                    <button id ="add-project-button">Add a project</button>
                 </div>
             </div>
 
             <div id = "main-content">
                 <div id="page">Placeholder</div>
                 <div id="project-display">
-                    <div id = #user-project-1>
-                        content here
+                    <div id = user-project-1>
+                        Example Project
+                        <button id = "remove-project-1">X</button>
                     </div>
-                    <div id = #user-project-2>
-                        content here
-                    </div>
+
                     
 
                 </div>
             </div>
         </div>
+
+        <dialog id="dialog">
+            <form id="project-form">
+                <label for="project-name-dialogue">What is the name of your project?:</label>
+                <input type="text" id="project-name-dialogue" name="project-name-dialogue" required><br><br>
+
+                <button type="button" id="close-dialog-button">Close</button>
+                <input type="submit" value="Submit" id ="submit-project-button">
+            </form>
+        </dialog>
+
     </main> 
 
     <script src = "main.js"></script>
