@@ -48,17 +48,22 @@ class ProjectStorage {
     addProject(project) {
         this.projectStore.push(project);
     }
+
+    get length(){
+        return this.projectStore.length
+    }
 }
 
 class Project {
-    constructor(title){
+    constructor(title, id){
         this.title = title;
+        this.id = id
         this.toDoStorage = [];
     }
 }
 
-function createProject(title) {
-    return new Project(title);
+function createProject(title, id) {
+    return new Project(title, id);
 }
 
 class ToDo{

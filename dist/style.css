@@ -6,8 +6,8 @@
 
 :root{
     --primary-color:rgba(50, 50, 50, 0.279);
-    --secondary-color:rgba(165, 165, 251, 0.447);
-    --tertiary-color:#b2b2c497;
+    --secondary-color: rgba(181, 181, 181, 0.409);
+    --tertiary-color:#white;
 
     --large-padding: 40px;
     --medium-padding: 20px;
@@ -93,7 +93,8 @@ h2{
     border-radius: 5px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    padding: var(--medium-padding);
+    font-size: 58px;
 }
 
 #project-display{
@@ -104,7 +105,7 @@ h2{
     gap: var(--small-padding);
 }
 
-[id*="user"]{
+[id*="user-project"]{
     border: solid black 1px;
     border-radius: 5px;
     height: 50px;
@@ -113,7 +114,10 @@ h2{
     justify-content: space-between;
     padding: var(--small-padding)
 }
-
+[id*="user-project"]:hover{
+    border: solid blue 2px; 
+    cursor: pointer;  
+}
 
 dialog{
     padding: 20px;
@@ -127,4 +131,31 @@ dialog{
 
 dialog::backdrop{
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+#all-projects, #all-tasks, #due-today, #important {
+    border: solid black 1px;
+    background-color: white;
+    width: 80%;
+    border-radius: 5px;
+    padding: var(--small-padding);
+    transition: border-color 0.5s ease;
+}
+
+#all-projects:hover, #all-tasks:hover, #due-today:hover, #important:hover {
+    border: solid blue 2px; 
+    cursor: pointer;  
+}
+
+[id *="sidebar-project"]{
+    display: flex;
+    justify-content: space-between;
+}
+
+#completion{
+    border: solid black 2px;
+    border-radius: 5px;
+    height: 5px;
+    width: 5px;
 }

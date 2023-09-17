@@ -2,10 +2,7 @@
 
 // dom.initiateAll()
 
-import { addProjectModalEvent, displayProject,handleModalEvents,attachRemoveProjectEvents} from './dom';
+import { addProjectModalEvent, displayProject,handleModalEvents} from './dom';
 
 addProjectModalEvent();
-displayProject();
 handleModalEvents();
-attachRemoveProjectEvents();
-
