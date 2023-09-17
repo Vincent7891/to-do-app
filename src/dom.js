@@ -16,44 +16,107 @@ function addProjectModalEvent() {
 
         displayProject(newProject,ID);
         ID += 1
-
-
-        const projectNames = projectStorage.projectStore.map(project => project.title);
-        const projectIds = projectStorage.projectStore.map(project => project.id)
-        console.log(projectNames,projectIds);
+        // const projectNames = projectStorage.projectStore.map(project => project.title);
+        // const projectIds = projectStorage.projectStore.map(project => project.id)
+        // console.log(projectNames,projectIds);
     });
 }
 
-// function addRemoveButtonForProject(ID){
+function addButtonsToProject(){
+    const rightContainer = document.getElementById("right-container-projects")
 
-// }
+}
 
-function displayProject(newProject, ID) {
+function changePage(){
 
-    const projectDisplayDiv = document.getElementById("project-display");
-    const newProjectDiv = document.createElement("div");
+}
+
+
+function addProjectRemoveButton(ID){
     const newRemoveButton = document.createElement("button");
-    newProjectDiv.id = `user-project-${ID}`;
-    newProjectDiv.textContent = newProject.title;
-
     newRemoveButton.id = `remove-project-${ID}`;
     newRemoveButton.className = "remove-project-button";
     newRemoveButton.textContent = "X";
-    newProjectDiv.appendChild(newRemoveButton);
-    projectDisplayDiv.appendChild(newProjectDiv);
-
-    addProjectToSidebar(newProject.title, ID)
-    addEditButtonToSidebar(ID)
-    addTaskButtonToProject(ID)
-
     newRemoveButton.addEventListener("click", () => {
         removeProjectFromStorage(ID);
         removeProjectFromDOM(ID);
         removeProjectFromSidebar(ID)
-        const projectNames = projectStorage.projectStore.map(project => project.title);
-        const projectIds = projectStorage.projectStore.map(project => project.id)
-        console.log(projectNames,projectIds);
     });
+    return newRemoveButton;
+}
+
+function renderNewImages() {
+    const leftProjectDiv = document.getElementById("right-container-projects")
+}
+
+
+function renderNewProject(newProject, ID){
+    const projectDisplayDiv = document.getElementById("project-display")
+    const newProjectDiv = document.createElement("div")
+    newProjectDiv.id = `user-project-${ID}`;
+    projectDisplayDiv.appendChild(newProjectDiv)
+
+    const leftContainerProjects = document.createElement("div")
+    leftContainerProjects.id = `left-container-projects-${ID}`
+    const favourite = document.createElement('img');
+    favourite.src = 'images/favourite.svg';
+    favourite.id = `favourite-project-${ID}`
+    favourite.className = "icons"
+    leftContainerProjects.appendChild(favourite)
+    const projectTitle = document.createElement("p")
+    projectTitle.textContent = newProject.title;
+    newProjectDiv.appendChild(leftContainerProjects)
+    leftContainerProjects.appendChild(projectTitle)
+  
+    const rightContainerProjects =  document.createElement("div")
+    rightContainerProjects.id = `right-container-projects-${ID}`
+
+    const remove = document.createElement('img');
+    remove.src = 'images/remove.svg';
+    remove.id = `remove-project-${ID}`
+    remove.className = "icons"
+
+    const edit = document.createElement('img');
+    edit.src = 'images/edit.svg';
+    edit.id = `edit-project-${ID}`
+    edit.className = "icons"
+
+    const calender = document.createElement('img');
+    calender.src = 'images/calender.svg';
+    calender.id = `calender-project-${ID}`
+    calender.className = "icons"
+
+    const add = document.createElement('img');
+    add.src = 'images/add.svg';
+    add.id = `add-project-${ID}`
+    add.className = "icons"
+
+    rightContainerProjects.appendChild(add)
+    rightContainerProjects.appendChild(remove)
+    rightContainerProjects.appendChild(edit)
+    rightContainerProjects.appendChild(calender)
+
+    newProjectDiv.appendChild(rightContainerProjects)
+
+
+    const addTaskDialog = document.getElementById("add-task-dialog")
+
+    remove.addEventListener("click", () => {
+        removeProjectFromStorage(ID);
+        removeProjectFromDOM(ID);
+        removeProjectFromSidebar(ID)
+    });
+
+    add.addEventListener("click", () => {
+        handleAddTaskDialog()
+    })
+
+}
+
+function displayProject(newProject, ID) {
+    renderNewProject(newProject,ID)
+    addProjectToSidebar(newProject.title, ID)
+    addEditButtonToSidebar(ID)
 }
 
 
@@ -89,6 +152,26 @@ function handleModalEvents(){
     });
 }
 
+function handleAddTaskDialog(){
+    const addTaskDialog = document.getElementById("add-task-dialog")
+    const closeTaskDialog = document.getElementById("close-task-dialog-button")
+    const submitTaskDialog = document.getElementById("submit-task-button")
+    
+    addTaskDialog.showModal()
+
+    addTaskDialog.addEventListener("submit", (e)=>{
+        e.preventDefault()
+    })
+
+    closeTaskDialog.addEventListener("click", ()=>{
+        addTaskDialog.close()
+    });
+
+    submitTaskDialog.addEventListener("click", ()=>{
+        addTaskDialog.close()
+    });
+}
+
 function addProjectToSidebar(projectName, ID){
     const sidebarDiv = document.createElement("div")
     sidebarDiv.id = `sidebar-project-${ID}`
@@ -116,6 +199,11 @@ function addTaskButtonToProject(ID){
     addTaskButton.textContent = "add a task"
     projectDiv.appendChild(addTaskButton)
 }
+
+function goToTaskPage(){
+
+}
+
 
 
 export { addProjectModalEvent, displayProject,handleModalEvents};

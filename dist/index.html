@@ -38,23 +38,39 @@
                 <button id ="add-project-button">Add a project</button>
             </div>
 
-            <div id = "main-content">
+            <!-- <div id = "main-content">
                 <div id="page">
                     All projects
                 </div>
                 <div id="project-display">
                     <div id = user-project-example>
                         Example Project
-                        <div id = "right-container-projects">
-                            <button id = "remove-project-example">Add to do</button>
-                            <button id = "remove-project-example">X</button>
-                            <button id = "edit-project-example">Edit</button>
-                            <button id = "favourite-project-example">Favourite</button>
+
+                    <div id = "right-container-projects">
+                            <img class = "icons" id="remove-project-example" src="images/remove.svg" alt="Remove" />
+                            <img class = "icons" id="edit-project-example" src="images/edit.svg" alt="Edit" />
+                            <img class = "icons" id="calender-project-example" src="images/calender.svg" alt="Calender" />                            
                         </div>
                     </div>
-
-                    
-
+                </div>
+            </div> -->
+            <div id = "main-content">
+                <div id="page">
+                    All projects
+                </div>
+                <div id="project-display">
+                    <div id = "user-project-example"> 
+                        <div id = "left-container-projects">
+                            <img class = "icons" id="favourite-project-example" src="images/favourite.svg" alt="Favourite" />
+                            <p>EXAMPLE</p>
+                        </div>
+                        <div id = "right-container-projects">
+                            <img class = "icons" id="add-project-example" src="images/add.svg" alt="Add" />
+                            <img class = "icons" id="remove-project-example" src="images/remove.svg" alt="Remove" />
+                            <img class = "icons" id="edit-project-example" src="images/edit.svg" alt="Edit" />
+                            <img class = "icons" id="calender-project-example" src="images/calender.svg" alt="Calender" />                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -65,6 +81,31 @@
                 <input type="text" id="project-name-dialogue" name="project-name-dialogue" required><br><br>
                 <button type="button" id="close-dialog-button">Close</button>
                 <input type="submit" value="Submit" id ="submit-project-button">
+            </form>
+        </dialog>
+
+        <dialog id = "add-task-dialog">
+            <form id = "add-task-form">
+                <label for = "add-task-title">What is task would you like to add to this project?:</label>
+                <input type = "text" id="add-task-title" name="add-task-title" required>
+
+                <label for="add-task-description">Add a description to your task</label>
+                <textarea id="add-task-description" name="add-task-description" required></textarea>                
+
+                <label for = "add-task-due-date">When is your task due?</label>
+                <input type = "date" id="add-task-due-date" name="add-task-due-date" required>
+                
+                <label for = "add-task-priority">What is the priority of this task?</label>
+                <select>
+                    <option value="default">Choose…</option>
+                    <option>High</option>
+                    <option>Medium</option>
+                    <option>Low</option>
+                </select> 
+
+                <button type="button" id="close-task-dialog-button">Close</button>
+                <input type="submit" value="Submit" id ="submit-task-button">
+
             </form>
         </dialog>
 
