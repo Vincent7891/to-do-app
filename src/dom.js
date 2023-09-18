@@ -1,8 +1,10 @@
-import projects, { createProject, ProjectStorage } from './projects';
+import projects, { createProject, ProjectStorage} from './projects';
+import createTask, { ToDo, createToDo} from './createTask';
 
 const projectStorage = new ProjectStorage();
 
 let ID = 0
+let taskID = 0
 
 function addProjectModalEvent() {
     const projectForm = document.getElementById("project-form");
@@ -14,7 +16,7 @@ function addProjectModalEvent() {
         const newProject = createProject(projectTitle,ID)
         projectStorage.addProject(newProject);
 
-        displayProject(newProject,ID);
+        displayProject(newProject,ID,taskID);
         ID += 1
         // const projectNames = projectStorage.projectStore.map(project => project.title);
         // const projectIds = projectStorage.projectStore.map(project => project.id)
@@ -22,35 +24,39 @@ function addProjectModalEvent() {
     });
 }
 
-function addButtonsToProject(){
-    const rightContainer = document.getElementById("right-container-projects")
 
+function renderNewTasks(ID) {
+    const projectDisplay = document.getElementById("project-display");
+  
+    let existingProjectContainer = document.getElementById(`project-container-${ID}`);
+  
+    if (!existingProjectContainer) {
+        const projectContainer = document.createElement("div");
+        projectContainer.id = `project-container-${ID}`;
+        const project = document.getElementById(`user-project-${ID}`);
+
+
+        // projectDisplay.appendChild(projectContainer);
+        projectDisplay.insertBefore(projectContainer,project)
+
+        // const project = document.getElementById(`user-project-${ID}`);
+        projectContainer.appendChild(project);
+        
+        const taskContainer = document.createElement("div");
+        taskContainer.id = `task-container-${taskID}`; // Optional: Set an ID for easier reference later
+        
+        projectContainer.appendChild(taskContainer);
+    } else {    
+        const taskContainer = document.createElement("div");
+        taskContainer.id = `task-container-${taskID}`; // Optional: Set an ID for easier reference later
+        existingProjectContainer.appendChild(taskContainer);
+    }
+    taskID += 1
 }
+  
 
-function changePage(){
+function renderNewProject(newProject,ID,taskID){
 
-}
-
-
-function addProjectRemoveButton(ID){
-    const newRemoveButton = document.createElement("button");
-    newRemoveButton.id = `remove-project-${ID}`;
-    newRemoveButton.className = "remove-project-button";
-    newRemoveButton.textContent = "X";
-    newRemoveButton.addEventListener("click", () => {
-        removeProjectFromStorage(ID);
-        removeProjectFromDOM(ID);
-        removeProjectFromSidebar(ID)
-    });
-    return newRemoveButton;
-}
-
-function renderNewImages() {
-    const leftProjectDiv = document.getElementById("right-container-projects")
-}
-
-
-function renderNewProject(newProject, ID){
     const projectDisplayDiv = document.getElementById("project-display")
     const newProjectDiv = document.createElement("div")
     newProjectDiv.id = `user-project-${ID}`;
@@ -97,9 +103,7 @@ function renderNewProject(newProject, ID){
     rightContainerProjects.appendChild(calender)
 
     newProjectDiv.appendChild(rightContainerProjects)
-
-
-    const addTaskDialog = document.getElementById("add-task-dialog")
+    const addTaskDialog = document.getElementById("add-task-dialog") 
 
     remove.addEventListener("click", () => {
         removeProjectFromStorage(ID);
@@ -108,13 +112,19 @@ function renderNewProject(newProject, ID){
     });
 
     add.addEventListener("click", () => {
-        handleAddTaskDialog()
-    })
-
+        addTaskDialog.showModal()
+        addTaskDialog.addEventListener("submit", (e) => {
+            e.preventDefault();
+            renderNewTasks(ID)
+            createNewTask()
+            addTaskDialog.close();
+        }, {once: true});     
+    })    
 }
 
-function displayProject(newProject, ID) {
-    renderNewProject(newProject,ID)
+
+function displayProject(newProject, ID,taskID) {
+    renderNewProject(newProject,ID,taskID)
     addProjectToSidebar(newProject.title, ID)
     addEditButtonToSidebar(ID)
 }
@@ -127,9 +137,14 @@ function removeProjectFromStorage(ID) {
 }
 
 function removeProjectFromDOM(ID) {
-    const removeButton = document.getElementById(`remove-project-${ID}`);
-    const parentDiv = removeButton.parentNode;
-    parentDiv.remove();
+    let container = document.getElementById(`project-container-${ID}`)
+    if (!container){
+        const userProject = document.getElementById(`user-project-${ID}`)
+        userProject.remove()
+    } else {
+        container.remove() 
+    }
+
 }
 
 
@@ -152,24 +167,15 @@ function handleModalEvents(){
     });
 }
 
-function handleAddTaskDialog(){
-    const addTaskDialog = document.getElementById("add-task-dialog")
-    const closeTaskDialog = document.getElementById("close-task-dialog-button")
-    const submitTaskDialog = document.getElementById("submit-task-button")
-    
-    addTaskDialog.showModal()
 
-    addTaskDialog.addEventListener("submit", (e)=>{
-        e.preventDefault()
-    })
+function createNewTask(){
 
-    closeTaskDialog.addEventListener("click", ()=>{
-        addTaskDialog.close()
-    });
-
-    submitTaskDialog.addEventListener("click", ()=>{
-        addTaskDialog.close()
-    });
+    const toDoName = document.getElementById("add-task-title").value
+    const toDoDescription = document.getElementById("add-task-description").value
+    const toDoDueDate = document.getElementById("add-task-due-date").value
+    const toDoPriority = document.getElementById("add-task-priority").value
+    const completion = "false"
+    const task = createToDo(toDoName,toDoDescription,toDoDueDate,toDoPriority,completion,taskID)
 }
 
 function addProjectToSidebar(projectName, ID){
@@ -192,18 +198,23 @@ function addEditButtonToSidebar(ID){
     projectSidebar.appendChild(editButton)
 }
 
-function addTaskButtonToProject(ID){
-    const projectDiv = document.getElementById(`user-project-${ID}`)
-    const addTaskButton = document.createElement("button")
-    addTaskButton.id = `add-task-button-${ID}`
-    addTaskButton.textContent = "add a task"
-    projectDiv.appendChild(addTaskButton)
+function handleAddTaskDialog(){
+    const addTaskDialog = document.getElementById("add-task-dialog")
+    const closeTaskDialog = document.getElementById("close-task-dialog-button")
+    const submitTaskDialog = document.getElementById("submit-task-button")
+    addTaskDialog.addEventListener("submit", (e)=>{
+        e.preventDefault()
+        addTaskDialog.close()
+    })
+
+    closeTaskDialog.addEventListener("click", ()=>{
+        addTaskDialog.close()
+    });
+
+    submitTaskDialog.addEventListener("click", ()=>{
+        addTaskDialog.close()
+    });
 }
 
-function goToTaskPage(){
 
-}
-
-
-
-export { addProjectModalEvent, displayProject,handleModalEvents};
+export { addProjectModalEvent, displayProject,handleModalEvents,handleAddTaskDialog};

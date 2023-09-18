@@ -2,7 +2,8 @@
 
 // dom.initiateAll()
 
-import { addProjectModalEvent, displayProject,handleModalEvents} from './dom';
+import { addProjectModalEvent, displayProject,handleModalEvents,handleAddTaskDialog} from './dom';
 
 addProjectModalEvent();
 handleModalEvents();
+handleAddTaskDialog();

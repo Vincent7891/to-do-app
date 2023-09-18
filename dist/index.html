@@ -37,7 +37,7 @@
                 </div>
                 <button id ="add-project-button">Add a project</button>
             </div>
-
+            
             <!-- <div id = "main-content">
                 <div id="page">
                     All projects
@@ -59,16 +59,21 @@
                     All projects
                 </div>
                 <div id="project-display">
-                    <div id = "user-project-example"> 
-                        <div id = "left-container-projects">
-                            <img class = "icons" id="favourite-project-example" src="images/favourite.svg" alt="Favourite" />
-                            <p>EXAMPLE</p>
+                    <div id = "project-container-example">
+                        <div id = "user-project-example"> 
+                            <div id = "left-container-projects">
+                                <img class = "icons" id="favourite-project-example" src="images/favourite.svg" alt="Favourite" />
+                                <p>EXAMPLE</p>
+                            </div>
+                            <div id = "right-container-projects">
+                                <img class = "icons" id="add-project-example" src="images/add.svg" alt="Add" />
+                                <img class = "icons" id="remove-project-example" src="images/remove.svg" alt="Remove" />
+                                <img class = "icons" id="edit-project-example" src="images/edit.svg" alt="Edit" />
+                                <img class = "icons" id="calender-project-example" src="images/calender.svg" alt="Calender" />                            
+                            </div>
                         </div>
-                        <div id = "right-container-projects">
-                            <img class = "icons" id="add-project-example" src="images/add.svg" alt="Add" />
-                            <img class = "icons" id="remove-project-example" src="images/remove.svg" alt="Remove" />
-                            <img class = "icons" id="edit-project-example" src="images/edit.svg" alt="Edit" />
-                            <img class = "icons" id="calender-project-example" src="images/calender.svg" alt="Calender" />                            
+                        <div id = "task-container-example">
+                            <p>example task stuff</p>
                         </div>
                     </div>
                 </div>
@@ -96,20 +101,18 @@
                 <input type = "date" id="add-task-due-date" name="add-task-due-date" required>
                 
                 <label for = "add-task-priority">What is the priority of this task?</label>
-                <select>
+                <select id = "add-task-priority" required>
                     <option value="default">Choose…</option>
-                    <option>High</option>
-                    <option>Medium</option>
-                    <option>Low</option>
+                    <option value = "high">High</option>
+                    <option value = "medium">Medium</option>
+                    <option value = "low">Low</option>
                 </select> 
 
                 <button type="button" id="close-task-dialog-button">Close</button>
                 <input type="submit" value="Submit" id ="submit-task-button">
-
             </form>
         </dialog>
-
-
+        
         <!-- <dialog id="edit-project-dialogue">
             <form id="edit-project-form">
                 <label for="project-edit-form">Edit project name:</label>
@@ -119,6 +122,7 @@
                 <input type="submit" value="Submit" id ="submit-edit-button">
             </form>
         </dialog> -->
+
     </main> 
 
     <script src = "main.js"></script>

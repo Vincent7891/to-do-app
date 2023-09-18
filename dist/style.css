@@ -243,3 +243,19 @@ form {
     background-color: #0056b3;
   }
   
+[id *="task-container"]{
+    padding: var(--small-padding);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 5px;
+    margin-left: 10%;
+    height: 35px;
+    border: dashed black 1px;
+}
+
+[id *= "project-container"]{
+    border: solid black 1px;
+    border-radius: 10px;
+    padding: var(--small-padding);
+}

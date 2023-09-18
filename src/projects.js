@@ -66,13 +66,5 @@ function createProject(title, id) {
     return new Project(title, id);
 }
 
-class ToDo{
-    constructor(title,description, dueDate, priority,checkList){
-        this.title = title
-        this.description = description
-        this.dueDate = dueDate
-        this.priority = priority
-        this.completion = completion
-    }
-}
-export { ProjectStorage, Project, ToDo, createProject};
+
+export { ProjectStorage, Project, createProject};
