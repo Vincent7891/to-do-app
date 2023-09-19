@@ -1,43 +1,3 @@
-// import dom from './dom';
-
-// const projects = (() =>{
-
-//     class ProjectStorage{
-//         constructor(){
-//             this.projectStore = []
-//         }
-//     }
-    
-//     class Project{
-//         constructor(title){
-//             this.title = title
-//             this.toDoStorage = []
-//         }
-//     }
-    
-//     function createProject(title){
-//         return new Project(title);
-//     }
-    
-    
-//     class ToDo{
-//         constructor(title,description, dueDate, priority,checkList){
-//             this.title = title
-//             this.description = description
-//             this.dueDate = dueDate
-//             this.priority = priority
-//             this.completion = completion
-//         }
-//     }
-//     return{
-//         ProjectStorage,
-//         Project,
-//         createProject,
-//         ToDo
-//     }
-
-// })();
-
 export default projects;
 
 class ProjectStorage {
@@ -55,15 +15,22 @@ class ProjectStorage {
 }
 
 class Project {
+    static nextID = 0; // Static property to keep track of the next ID to assign
+
     constructor(title, id){
         this.title = title;
-        this.id = id
+        this.id = Project.nextID
+        Project.nextID++; // Increment nextID for the next instance
         this.toDoStorage = [];
+    }
+
+    addTaskToProject(task){
+        this.toDoStorage.push(task)
     }
 }
 
-function createProject(title, id) {
-    return new Project(title, id);
+function createProject(title) {
+    return new Project(title);
 }
 
 

@@ -20,7 +20,7 @@
                 <div id = "home-bar">
                     <h2>Home</h2>
                     <ul>
-                        <li id = "all-projects">All projects</li>
+                        <li id = "all-projects">All Projects & Tasks</li>
                         <li id = "all-tasks">All tasks</li>
                         <li id = "due-today">Due today</li>
                         <li id = "important">Important</li>
@@ -32,7 +32,7 @@
                     <h2>Projects</h2>
                     <div id = "sidebar-project-example">
                         Example Project
-                        <button id = "sidebar-project-button-example">edit project</button>
+                        <!-- <button id = "sidebar-project-button-example">edit project</button> -->
                     </div>
                 </div>
                 <button id ="add-project-button">Add a project</button>
@@ -56,7 +56,7 @@
             </div> -->
             <div id = "main-content">
                 <div id="page">
-                    All projects
+                    All Projects & Tasks
                 </div>
                 <div id="project-display">
                     <div id = "project-container-example">
@@ -69,11 +69,18 @@
                                 <img class = "icons" id="add-project-example" src="images/add.svg" alt="Add" />
                                 <img class = "icons" id="remove-project-example" src="images/remove.svg" alt="Remove" />
                                 <img class = "icons" id="edit-project-example" src="images/edit.svg" alt="Edit" />
-                                <img class = "icons" id="calender-project-example" src="images/calender.svg" alt="Calender" />                            
+                                <!-- <img class = "icons" id="calender-project-example" src="images/calender.svg" alt="Calender" />                             -->
                             </div>
                         </div>
                         <div id = "task-container-example">
-                            <p>example task stuff</p>
+                            <div id = "left-container-tasks">
+                                <img class = "icons" id="tick-task-example" src="images/tick.svg" alt="tick" />
+                                <p>example task stuff</p>
+                            </div>
+                            <div id = "right-container-tasks">
+                                <img class = "icons" id="remove-task-example" src="images/remove.svg" alt="Remove" />
+                                <img class = "icons" id="edit-task-example" src="images/edit.svg" alt="Edit" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -112,6 +119,21 @@
                 <input type="submit" value="Submit" id ="submit-task-button">
             </form>
         </dialog>
+
+        <dialog id="edit-task-dialog">
+            <form method="dialog">
+              <input type="text" id="edit-task-title" placeholder="Task Title">
+              <input type="text" id="edit-task-description" placeholder="Description">
+              <input type="date" id="edit-task-due-date">
+              <select id="edit-task-priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+              <button type="submit" id="submit-edit-task-button">Submit</button>
+              <button type="button" id="close-edit-task-dialog-button">Close</button>
+            </form>
+          </dialog>
         
         <!-- <dialog id="edit-project-dialogue">
             <form id="edit-project-form">

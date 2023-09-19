@@ -6,4 +6,4 @@ import { addProjectModalEvent, displayProject,handleModalEvents,handleAddTaskDia
 
 addProjectModalEvent();
 handleModalEvents();
-handleAddTaskDialog();
+// handleAddTaskDialog();

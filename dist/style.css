@@ -241,9 +241,9 @@ form {
   
   form button[id$="close-dialog-button"]:hover {
     background-color: #0056b3;
-  }
+}
   
-[id *="task-container"]{
+/* [id *="task-container"]{
     padding: var(--small-padding);
     display: flex;
     justify-content: flex-start;
@@ -252,10 +252,37 @@ form {
     margin-left: 10%;
     height: 35px;
     border: dashed black 1px;
-}
+} */
 
 [id *= "project-container"]{
     border: solid black 1px;
     border-radius: 10px;
     padding: var(--small-padding);
+}
+
+
+
+
+[id *= "task-container"]{
+    margin-top: 5px;
+    margin-left: 10%;
+    height: 40px;
+    border: dashed black 1px;
+    display: flex;
+    justify-content: space-between;
+}
+
+[id *= "left-container-task"], [id *= "right-container-task"]{
+    display: flex;
+    align-items: center;
+    gap: var(--small-padding);
+    padding: var(--small-padding);
+}
+
+.crossed-out {
+    text-decoration: line-through;
+}
+
+.icons.green-tick {
+    color: green;
 }
